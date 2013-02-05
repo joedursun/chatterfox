@@ -19,9 +19,16 @@ def receive_messages(telegram):
     telegram.receive()
 
 def send_messages(telegram):
+  print 'Ready to chat: \n'
   while True:
-    message = raw_input(': ')
-    telegram.send(message)
+    try:
+      message = raw_input()
+      telegram.send(message)
+    except (KeyboardInterrupt, SystemExit):
+      print '\n Shutting down Chatterfox'
+      sys.exit(2)
+    except:
+      raise
 
 def client_handler(address = None):
   remote_address = get_remote_address() if address == None else address

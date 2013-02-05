@@ -23,6 +23,6 @@ class Message(object):
   def receive(self):
     try:
       data, address = self.s.recvfrom(MAX)
-      print '<<', address, repr(data), '>>'
+      print address[0], '>', repr(data)
     except:
       raise
