@@ -1,4 +1,4 @@
-import socket, sys
+import socket
 
 MAX = 65535
 PORT = 1060
@@ -9,10 +9,15 @@ class Message(object):
   def __init__(self, remote_address = None):
     self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     self.s.bind(('',PORT))
+    self.buddies = {}
     if remote_address:
       self.remote_address = remote_address
       self.s.connect((remote_address, PORT))
     print 'Client socket name is', self.s.getsockname()
+
+  def add_buddy(self, address):
+    name = raw_input('No nickname for ' + address + '. What would you like to name your buddy? ')
+    self.buddies[address] = name
 
   def send(self, text, address = None):
     try:
@@ -23,6 +28,8 @@ class Message(object):
   def receive(self):
     try:
       data, address = self.s.recvfrom(MAX)
-      print address[0], '>', repr(data)
+      if not self.buddies.has_key(address[0]):
+        self.add_buddy(address[0])
+      print self.buddies[address[0]], '>', repr(data)
     except:
       raise
