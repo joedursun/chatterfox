@@ -20,16 +20,10 @@ class Message(object):
     self.buddies[address] = name
 
   def send(self, text, address = None):
-    try:
-      self.s.send(text) if address == None else self.s.sendto((text, address))
-    except:
-      raise
+    self.s.send(text) if address == None else self.s.sendto((text, address))
 
   def receive(self):
-    try:
-      data, address = self.s.recvfrom(MAX)
-      if not self.buddies.has_key(address[0]):
-        self.add_buddy(address[0])
-      print self.buddies[address[0]], '>', repr(data)
-    except:
-      raise
+    data, address = self.s.recvfrom(MAX)
+    if not self.buddies.has_key(address[0]):
+      self.add_buddy(address[0])
+    print self.buddies[address[0]], '>', repr(data)
