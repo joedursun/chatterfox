@@ -1,5 +1,6 @@
 Chatterfox
 ==========
+Chatterfox is a crude, lightweight, and completely unnecessary chat client. Just for fun. Enjoy.
 
 Setup
 =====
@@ -8,8 +9,6 @@ Add chatterfox/chatter to your path
 
 Usage
 =====
-This project is a work in progress, but it works for now. I only tested with Python 2.7, but it should work with at least Python 2.5
-
 Assuming chatter is in your path
 * ```chatter [ ip ]```
 
