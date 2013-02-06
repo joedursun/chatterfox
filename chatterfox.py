@@ -1,4 +1,4 @@
-import sys, os
+import sys, socket
 from message import Message
 from threading import Thread
 
@@ -8,6 +8,7 @@ def start_thread(func, arguments):
   thread.start()
 
 def get_remote_address():
+  import os
   print 'Searching for other devices on the network. This may take a while...'
   ip_list = os.system('arp -a')
   print 'Here is a list of possible hosts: ', ip_list
@@ -22,19 +23,21 @@ def send_messages(telegram):
   print 'Ready to chat: \n'
   while True:
     try:
-      message = raw_input()
-      telegram.send(message)
+      telegram.send(raw_input())
     except (KeyboardInterrupt, SystemExit):
       print '\n Shutting down Chatterfox'
       sys.exit(2)
     except:
-      raise
+      raise # show the error; easier to debug and fix
 
 def client_handler(address = None):
   remote_address = get_remote_address() if address == None else address
-  telegram = Message(remote_address)
   try:
+    telegram = Message(remote_address)
     start_thread(receive_messages, ([telegram]))
     send_messages(telegram)
+  except socket.gaierror:
+    print 'Invalid address. Shutting down Chatterfox.'
+    sys.exit(2)
   except:
-    raise
+    raise # show the error; easier to debug and fix
