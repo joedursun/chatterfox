@@ -38,13 +38,3 @@ def client_handler(address = None):
     send_messages(telegram)
   except:
     raise
-
-if len(sys.argv) == 2:
-  client_handler(sys.argv[1])
-
-elif len(sys.argv) == 1:
-  client_handler()
-
-else:
-  print >>sys.stderr, 'Example usage: chatter [ <host> ]'
-  sys.exit(2)
