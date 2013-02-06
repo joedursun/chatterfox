@@ -26,4 +26,4 @@ class Message(object):
     data, address = self.s.recvfrom(MAX)
     if not self.buddies.has_key(address[0]):
       self.add_buddy(address[0])
-    print self.buddies[address[0]], '>', repr(data)
+    print '<', self.buddies[address[0]], '>', repr(data)
