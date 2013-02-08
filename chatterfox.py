@@ -34,6 +34,7 @@ def client_handler(address = None):
   remote_address = get_remote_address() if address == None else address
   try:
     telegram = Message(remote_address)
+    telegram.buddies[remote_address] = raw_input('Enter nickname for buddy: ')
     start_thread(receive_messages, ([telegram]))
     send_messages(telegram)
   except socket.gaierror:
