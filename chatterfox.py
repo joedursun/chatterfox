@@ -25,6 +25,7 @@ def send_messages(telegram):
     try:
       telegram.send(raw_input())
     except (KeyboardInterrupt, SystemExit):
+      telegram.cleanup()
       print '\n Shutting down Chatterfox'
       sys.exit(2)
     except:
