@@ -9,4 +9,4 @@ elif len(sys.argv) == 1:
 
 else:
   print >>sys.stderr, 'Example usage: chatter [ <host> ]'
-  sys.exit(2)
+  sys.exit(1)

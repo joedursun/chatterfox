@@ -1,4 +1,5 @@
 import socket, sys
+from text_colors import Colors
 
 MAX = 65535
 PORT = 1060
@@ -29,6 +30,9 @@ class Message(object):
     name = raw_input('No nickname for ' + address + '. What would you like to name your buddy? ')
     self.buddies[address] = name
 
+  def pretty_print(self, buddy_name, text = ''):
+    print Colors.TEXTGREEN, '<', buddy_name, '>', text, Colors.END
+
   def send(self, text, address = None):
     try:
       self.s.send(text) if address == None else self.s.sendto((text, address))
@@ -40,9 +44,11 @@ class Message(object):
 
   def receive(self):
     data, address = self.s.recvfrom(MAX)
+
     if not self.buddies.has_key(address[0]):
       self.add_buddy(address[0])
-    print '<', self.buddies[address[0]], '>', repr(data)
+
+    self.pretty_print(self.buddies[address[0]], repr(data))
 
   def cleanup(self):
     self.s.close()

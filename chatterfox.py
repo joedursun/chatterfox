@@ -40,6 +40,6 @@ def client_handler(address = None):
     send_messages(telegram)
   except socket.gaierror:
     print 'Invalid address. Shutting down Chatterfox.'
-    sys.exit(2)
+    sys.exit(1)
   except:
     raise # show the error; easier to debug and fix

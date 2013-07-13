@@ -1,6 +1,8 @@
 Chatterfox
 ==========
-Chatterfox is a crude, lightweight, and completely unnecessary chat client. Just for fun. Enjoy.
+Chatterfox is a simple, lightweight and easy to setup chat client for use on local area networks. It has been tested with Python 2.7 on Windows (XP|7) and Mac OS X 10.8 and works well on both. Incoming text is currently displayed as black text on a green background; soon these colors will be easily configured via an environment variable.
+
+Chatterfox relies solely on the python standard library, so no need to bother with package managers.
 
 Setup
 =====
