@@ -51,5 +51,5 @@ class Message(object):
     self.pretty_print(self.buddies[address[0]], repr(data))
 
   def cleanup(self):
-    self.s.shutdown()
+    self.s.shutdown(socket.SHUT_RDWR)
     self.s.close()
