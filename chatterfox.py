@@ -7,6 +7,11 @@ def start_thread(func, arguments):
   thread.setDaemon(True)
   thread.start()
 
+def print_internal_ip_addr():
+  hostname = socket.gethostname()
+  hostname += '.local' if hostname.find('.local') < 0 else ''
+  print 'Your ip on the network is', socket.gethostbyname(hostname)
+
 def get_remote_address():
   import os
   print 'Searching for other devices on the network. This may take a while...'
@@ -32,6 +37,7 @@ def send_messages(telegram):
       raise # show the error; easier to debug and fix
 
 def client_handler(address = None):
+  print_internal_ip_addr()
   remote_address = get_remote_address() if address == None else address
   try:
     telegram = Message(remote_address)
