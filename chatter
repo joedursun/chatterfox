@@ -1,5 +1,6 @@
 #! /usr/bin/python
-import chatterfox, sys
+import sys
+from lib import chatterfox
 
 if len(sys.argv) == 2:
   chatterfox.client_handler(sys.argv[1])
